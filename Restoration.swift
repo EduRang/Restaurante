@@ -7,10 +7,6 @@
 
 import Foundation
 
-// Equivalente a la extensión NSUserActivity del libro
-// En SwiftUI usamos SceneStorage y AppStorage en lugar de NSUserActivity
-// pero mantenemos la lógica del libro adaptada para SwiftUI
-
 enum StateRestorationController {
 
     enum Identifier: String, Codable {
@@ -32,8 +28,6 @@ enum StateRestorationController {
     }
 }
 
-// Estructura que encapsula todo el estado restaurable
-// Equivalente al userInfo dictionary de NSUserActivity del libro
 struct AppRestorationState: Codable {
     var order: Order = Order()
     var controllerIdentifier: StateRestorationController.Identifier = .categories
