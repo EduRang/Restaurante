@@ -11,13 +11,11 @@ import SwiftUI
 struct RestauranteApp: App {
     @StateObject var menuController = MenuController.shared
 
-    // Estado de restauración — controla a qué pantalla navegar
     @State private var restoredCategory: String?
     @State private var restoredMenuItem: MenuItem?
     @State private var restoredTab: StateRestorationController.Identifier = .categories
 
     init() {
-        // Configura URLCache — equivalente al AppDelegate del libro
         let temporaryDirectory = NSTemporaryDirectory()
         let urlCache = URLCache(
             memoryCapacity: 25_000_000,
@@ -40,16 +38,13 @@ struct RestauranteApp: App {
         }
     }
 
-    // Equivalente a scene(_:restoreInteractionStateWith:) del libro
     func restoreState() {
         guard let state = menuController.loadRestorationState() else { return }
 
-        // Restaura la orden guardada
         if !state.order.menuItems.isEmpty {
             menuController.order = state.order
         }
 
-        // Restaura la pantalla donde el usuario estaba
         switch state.controllerIdentifier {
         case .menu:
             restoredCategory = state.menuCategory
